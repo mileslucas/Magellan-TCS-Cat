@@ -72,7 +72,7 @@ def doitwithcsv(pdcat_in):
     else:
         pdcat = pd.DataFrame(data={'Name':Names})
         pdcat['RA'], pdcat['DEC'], pdcat['pmra'], pdcat['pmdec'] = np.nan,np.nan,np.nan,np.nan
-        customSimbad = Simbad()
+        customSimbad = Simbad(simbad_server="simbad.harvard.edu")
         customSimbad.add_votable_fields('pmra','pmdec')
         pdcat['pmra s/yr'], pdcat['pmdec arcsec/yr'] = np.nan, np.nan
 
