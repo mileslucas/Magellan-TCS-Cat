@@ -6,6 +6,8 @@ import astropy.units as u
 from astroquery.simbad import Simbad, conf
 from io import StringIO
 
+conf.server = "simbad.harvard.edu"
+
 st.set_page_config(
         page_title="Create TCS Cat",
         page_icon="",
@@ -72,7 +74,6 @@ def doitwithcsv(pdcat_in):
     else:
         pdcat = pd.DataFrame(data={'Name':Names})
         pdcat['RA'], pdcat['DEC'], pdcat['pmra'], pdcat['pmdec'] = np.nan,np.nan,np.nan,np.nan
-        conf.server = "simbad.harvard.edu"
         customSimbad = Simbad()
         customSimbad.add_votable_fields('pmra','pmdec')
         pdcat['pmra s/yr'], pdcat['pmdec arcsec/yr'] = np.nan, np.nan
