@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import astropy.units as u
-from astroquery.simbad import Simbad
+from astroquery.simbad import Simbad, conf
 from io import StringIO
 
 st.set_page_config(
@@ -72,7 +72,8 @@ def doitwithcsv(pdcat_in):
     else:
         pdcat = pd.DataFrame(data={'Name':Names})
         pdcat['RA'], pdcat['DEC'], pdcat['pmra'], pdcat['pmdec'] = np.nan,np.nan,np.nan,np.nan
-        customSimbad = Simbad(simbad_server="simbad.harvard.edu")
+        conf.server = "simbad.harvard.edu"
+        customSimbad = Simbad()
         customSimbad.add_votable_fields('pmra','pmdec')
         pdcat['pmra s/yr'], pdcat['pmdec arcsec/yr'] = np.nan, np.nan
 
